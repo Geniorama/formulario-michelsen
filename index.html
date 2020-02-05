@@ -8,7 +8,7 @@
     <title>Form steps</title>
 </head>
 <body>
- 
+    <div class="modal-errors" id="modal-errors"></div>
      <form action=".esc_url( admin_url(admin-post.php))."  enctype="multipart/form-data" class="request-form" id="form-natural" name="formulario-natural" method="post">
         <div class="form-register-header">
             <ul class="progressbar">
@@ -29,15 +29,15 @@
         <div class="form-row">
         <div class="form-group col-md-6">
         <label for="valor-financiar">Valor a financiar</label>
-        <input type="text" name="valor-financiar" class="form-control step-input" value="undefined" id="valor-financiar">
+        <input type="text" name="valor-financiar" class="form-control step-input valor"  id="valor-financiar">
         <small id="passwordHelpBlock" class="form-text text-muted">El monto mínimo que puedes solicitar es de $500.000</strong></small>
         </div>
         <div class="form-group col-md-6"> 
         <label for="tipo-programa">Tipo de programa</label>
         <select class="form-control custom-select" id="tipo-programa" name="tipo-programa">
         <option value="">Seleccione uno</option>
-        <option value="Pregrado" .getValSelect(tipo-programa, 1).>Pregrado</option>
-        <option value="Posgrado" .getValSelect(tipo-programa, 2).>Posgrado</option>
+        <option value="Pregrado">Pregrado</option>
+        <option value="Posgrado">Posgrado</option>
         </select>      
         </div>
         <div class="form-group col-md-6">
@@ -63,8 +63,8 @@
         <label for="modo-pago">Modo de pago</label>
         <select class="form-control custom-select" id="modo-pago" name="modo-pago">
         <option value="">Seleccione uno</option>
-        <option value="Pagaré"  .getValSelect(modo-pago, 1).>Pagaré</option>
-        <option value="Cheque" .getValSelect(modo-pago, 2).>Cheque</option>
+        <option value="Pagaré">Pagaré</option>
+        <option value="Cheque">Cheque</option>
         </select>
         </div>
         <div class="form-group col-md-6">

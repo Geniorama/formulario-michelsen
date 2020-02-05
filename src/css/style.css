@@ -46,6 +46,25 @@
   .step.to-left{
     margin-left: -100%;
   }
+
+  .modal-errors{
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      background-color: rgba(0, 0, 0, .9);
+      z-index: 2;
+      top: 0;
+      left: 0;
+      padding: 5em;
+      opacity: 0;
+      transform: translateY(-100%);
+      transition: all .5s;
+  }
+
+  .modal-errors.show-modal{
+    opacity: 1;
+    transform: translateY(0);
+  }
   
   
   
