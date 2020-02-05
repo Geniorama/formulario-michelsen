@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <title>Form steps</title>
+</head>
+<body>
+ 
+     <form action=".esc_url( admin_url(admin-post.php))."  enctype="multipart/form-data" class="request-form" id="form-natural" name="formulario-natural" method="post">
+        <div class="form-register-header">
+            <ul class="progressbar">
+                <li class="progressbar_option active"><span class="progressbar-number">1</span></li>
+                <li class="progressbar_option"><span class="progressbar-number">2</span></li>
+                <li class="progressbar_option"><span class="progressbar-number">3</span></li>
+                <li class="progressbar_option"><span class="progressbar-number">4</span></li>
+            </ul>
+        </div>
+	    <hr>
+	    <div id="alerta"></div>
+        <div class="form-register-body">
+        <div class="step active" id="step-1">
+        <div class="step-header">
+        <h2 class="step-title text-center">1. INFORMACIÓN GENERAL</h2>
+        </div>
+        <div class="step-body">
+        <div class="form-row">
+        <div class="form-group col-md-6">
+        <label for="valor-financiar">Valor a financiar</label>
+        <input type="text" name="valor-financiar" class="form-control step-input" value="undefined" id="valor-financiar">
+        <small id="passwordHelpBlock" class="form-text text-muted">El monto mínimo que puedes solicitar es de $500.000</strong></small>
+        </div>
+        <div class="form-group col-md-6"> 
+        <label for="tipo-programa">Tipo de programa</label>
+        <select class="form-control custom-select" id="tipo-programa" name="tipo-programa">
+        <option value="">Seleccione uno</option>
+        <option value="Pregrado" .getValSelect(tipo-programa, 1).>Pregrado</option>
+        <option value="Posgrado" .getValSelect(tipo-programa, 2).>Posgrado</option>
+        </select>      
+        </div>
+        <div class="form-group col-md-6">
+        <label for="plazo-cuotas">Plazo (No. de Cuotas)</label>
+        <select class="form-control custom-select" id="plazo-cuotas" name="plazo-cuotas">
+        <option value="">Seleccione uno</option>
+        <option value="1" disabled>1</option>
+        <option value="2" disabled>2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        </select>
+        <small id="passwordHelpBlock" class="form-text text-muted">No puedes seleccionar menos de 3 cuotas</strong></small>
+        </div>
+        <div class="form-group col-md-6">
+        <label for="modo-pago">Modo de pago</label>
+        <select class="form-control custom-select" id="modo-pago" name="modo-pago">
+        <option value="">Seleccione uno</option>
+        <option value="Pagaré"  .getValSelect(modo-pago, 1).>Pagaré</option>
+        <option value="Cheque" .getValSelect(modo-pago, 2).>Cheque</option>
+        </select>
+        </div>
+        <div class="form-group col-md-6">
+        <label for="fecha-desembolso">Fecha Solicitud</label>
+        <input type="date"  class="form-control step-input" id="fecha-desembolso" name="fecha-desembolso" value=".getValues(fecha-solicitud).">
+        </div>
+        <div class="form-group col-md-6">
+        <label for="fecha-primera-cuota">Fecha 1ra. Cuota</label>
+        <input type="date"  class="form-control step-input" id="fecha-primera-cuota" name="fecha-primera-cuota" value=".getValues(fecha-cuota-uno).">
+        </div>
+        </div>
+            
+        <div class="step-footer">
+        <button type="button"  id="nextbutton" class="disabled-button step-button step-button-next button-master principal-button" data-to_step="2" data-step="1">Siguiente <i class="fas fa-chevron-right"></i></button>
+        </div>  
+            
+        </div>  
+        </div>
+        
+        <!-- SECTION 2-->
+        <div class="step" id="step-2">
+        <div class="alert alert-warning" role="alert">
+        Recuerda que una vez enviado el formulario verificaremos los datos llamando a los <strong>números de teléfono</strong> que haz registrado, deben estar pendientes a la llamada
+        </div>   
+        <div class="step-header">
+        <h2 class="step-title text-center">2. INFORMACIÓN PERSONAL DEL SOLICITANTE/REPRESENTANTE LEGAL</h2>
+        </div>
+        <div class="step-body">
+        <div class="form-row">
+        <div class="form-group col-12 col-md-6 col-lg-4">
+        <label for="nombres-rep">Nombres</label>
+        <input type="text" class="form-control step-input" id="nombres-rep" name="nombres-rep">
+        </div>
+        <div class="form-group col-12 col-md-6 col-lg-4">
+        <label for="apellidos-rep">Apellidos</label>
+        <input type="text" class="form-control step-input" id="apellidos-rep" name="apellidos-rep">
+        </div>
+        <div class="form-group col-12 col-md-6 col-lg-4">
+        <label for="tipo-indetificacion-rep">Tipo de identificación</label>
+        <select class="form-control custom-select" id="tipo-indetificacion-rep" name="tipo-indetificacion-rep">
+        <option	value="">Seleccione uno</option>
+        <option value="CC"><span class="abbreviation">Cédula de ciudadanía</span> - CC</option>
+        <option value="CE"><span class="abbreviation">Cédula de extranjería</span> - CE</option>
+        </select>
+        </div>
+        <div class="form-group col-12 col-md-6 col-lg-4">
+        <label for="numero-identificacion-rep">No. Identificación</label>
+        <input type="number" class="form-control step-input" id="numero-identificacion-rep" name="numero-identificacion-rep">
+        </div>
+        <div class="form-group col-12 col-md-6 col-lg-4">
+        <label for="genero-rep">Género</label>
+        <select class="form-control custom-select" id="genero-rep" name="genero-rep">
+        <option value="">Seleccione uno</option>
+        <option value="femenino">Femenino</option>
+        <option value="masculino">Masculino</option>
+        </select>
+        </div>
+        <div class="form-group col-12 col-md-6 col-lg-4">
+        <label for="direccion-rep">Dirección recidencia</label>
+        <input type="text" class="form-control step-input" id="direccion-rep" name="direccion-rep">
+        </div>
+        <div class="form-group col-12 col-md-6 col-lg-4">
+        <label for="barrio-rep">Barrio</label>
+        <input type="text" class="form-control step-input" id="barrio-rep" name="barrio-rep">
+        </div>
+        <div class="form-group col-12 col-md-6 col-lg-4">
+        <label for="departamento">Departamento</label>
+        <select class="form-control custom-select" id="departamento" name="departamento">
+        <option value="">Seleccione uno</option>
+        </select>
+        <small id="passwordHelpBlock" class="form-text text-muted">Para elegir <strong>CIUDAD BOGOTÁ D.C.</strong> debes elegir primero <strong>DEPARTAMENTO BOGOTÁ D.C.</strong></small>
+        </div>
+        <div class="form-group col-12 col-md-6 col-lg-4">
+        <label for="ciudad">Ciudad</label>
+        <select class="form-control custom-select" id="ciudad" name="ciudad">
+        <option value="">Seleccione uno</option>
+        </select>
+        </div>
+        <div class="form-group col-12 col-md-6 col-lg-4">
+        <label for="telefono-recidencia-rep">Teléfono (opcional)</label>
+        <input type="number" class="form-control step-input" id="telefono-recidencia-rep" name="telefono-recidencia-rep">
+        </div>
+        <div class="form-group col-12 col-md-6 col-lg-4">
+        <label for="celular-rep">Celular</label>
+        <input type="text" class="form-control step-input" id="celular-rep" name="celular-rep">
+        </div>
+        <div class="form-group col-12 col-md-6 col-lg-4">
+        <label for="email-rep">E-mail</label>
+        <input type="email" class="form-control step-input" id="email-rep" name="email-rep">
+        </div>
+        <div class="form-group col-12 col-md-6 col-lg-4">
+        <label class="w-100">Ocupación</label><br>
+        <span class="wpcf7-form-control-wrap ocupacion">
+        <span class="wpcf7-form-control" id="ocupacion">
+        <span class="wpcf7-list-item first">
+        <input class="form-check-input" type="checkbox" name="ocupacion[]" value="Empleado" id="empleado">
+        <span class="wpcf7-list-item-label">Empleado</span>
+        </span>
+        <span class="wpcf7-list-item">
+        <input class="form-check-input" type="checkbox" name="ocupacion[]" value="Independiente" id="independiente">
+        <span class="wpcf7-list-item-label">Independiente</span>
+        </span>
+        <span class="wpcf7-list-item">
+        <input class="form-check-input" type="checkbox" name="ocupacion[]" value="Pensionado" id="pensionado">
+        <span class="wpcf7-list-item-label">Pensionado</span>
+        </span>
+        <span class="wpcf7-list-item last">
+        <input class="form-check-input" type="checkbox" name="ocupacion[]" value="Rentista" id="rentista">
+        <span class="wpcf7-list-item-label">Rentista</span>
+        </span>
+        </span>
+        </span>
+        </div>
+        <div class="form-group col-md-4">
+        <label for="ingresos-mensuales-rep">Ingresos mensuales</label>
+        <input type="number" class="form-control step-input" id="ingresos-mensuales-rep" name="ingresos-mensuales-rep">
+        </div>
+        <div class="form-group col-md-4">
+        <label for="gastos-mensuales-rep">Gastos mensuales</label>
+        <input type="number" class="form-control step-input" id="gastos-mensuales-rep" name="gastos-mensuales-rep">
+        </div>
+        </div>
+        <div class="step-footer">
+        <button type="button"   class="disabled-button step-button step-button-next button-master principal-button" data-to_step="3" data-step="2">Siguiente <i class="fas fa-chevron-right"></i></button>
+        <button type="button" class="step-button step-button-back button-master secondary-button" data-to_step="1" data-step="2"><i class="fas fa-chevron-left"></i> Anterior</button>
+        </div>  
+        </div>  
+        </div>
+        
+        
+        <!--SECITON 3-->
+        <div class="step" id="step-3">
+        <div class="alert alert-warning" role="alert">
+        Recuerda que una vez enviado el formulario verificaremos los datos llamando a los <strong>números de teléfono</strong> que haz registrado, deben estar pendientes a la llamada
+        </div> 
+        <div class="step-header">
+        <h2 class="step-title text-center">3. REFERENCIA</h2>
+        </div>
+        <div class="step-body">
+        <div class="form-row">
+        <span class="w-100 reference">Referencia familiar del solicitante</span>
+        <div class="form-group col-12 col-md-6 col-lg-3">
+        <label for="nombres-familiar">Nombres</label>
+        <input type="text" class="form-control step-input" id="nombres-familiar" name="nombres-familiar">
+        </div>
+        <div class="form-group col-12 col-md-6 col-lg-3">
+        <label for="apellidos-familiar">Apellidos</label>
+        <input type="text" class="form-control step-input" id="apellidos-familiar" name="apellidos-familiar">
+        </div>
+        <div class="form-group col-12 col-md-6 col-lg-3">
+        <label for="celular-familiar">Celular</label>
+        <input type="number" class="form-control step-input" id="celular-familiar" name="celular-familiar">
+        </div>
+        <div class="form-group col-12 col-md-6 col-lg-3">
+        <label for="telefono-familiar">Teléfono (opcional)</label>
+        <input type="number" class="form-control step-input" id="telefono-familiar" name="telefono-familiar">
+        </div>
+        <span class="w-100 reference mt-5">Referencia personal del solicitante</span>
+        <div class="form-group col-12 col-md-6 col-lg-3">
+        <label for="nombres-personal">Nombres</label>
+        <input type="text" class="form-control step-input" id="nombres-personal" name="nombres-personal">
+        </div>
+        <div class="form-group col-12 col-md-6 col-lg-3">
+        <label for="apellidos-personal">Apellidos</label>
+        <input type="text" class="form-control step-input" id="apellidos-personal" name="apellidos-personal">
+        </div>
+        <div class="form-group col-12 col-md-6 col-lg-3">
+        <label for="celular-personal">Celular</label>
+        <input type="number" class="form-control step-input" id="celular-personal" name="celular-personal">
+        </div>
+        <div class="form-group col-12 col-md-6 col-lg-3">
+        <label for="telefono-personal">Teléfono (opcional)</label>
+        <input type="number" class="form-control step-input" id="telefono-personal" name="telefono-personal">
+        </div>
+        </div>
+        <div class="step-footer">
+        <button type="button"  class="disabled-button step-button step-button-next button-master principal-button" data-to_step="4" data-step="3">Siguiente <i class="fas fa-chevron-right"></i></button>
+        <button type="button" class="step-button step-button-back button-master secondary-button" data-to_step="2" data-step="3"><i class="fas fa-chevron-left"></i> Anterior</button>
+        </div>  
+        </div>  
+        </div>
+        
+        <!--SECTION 4-->
+        <div class="step" id="step-4">
+        <div class="alert alert-warning" role="alert">
+        Recuerda que una vez enviado el formulario verificaremos los datos llamando a los <strong>números de teléfono</strong> que haz registrado, deben estar pendientes a la llamada
+        </div>
+        <div class="step-header">
+        <h2 class="step-title text-center">4. INFORMACIÓN DEL ESTUDIANTE</h2>
+        </div>
+        <div class="step-body">
+        <div class="form-row">
+        <div class="form-group col-12 col-md-6 col-lg-4">
+        <label for="nombres-est">Nombres</label>
+        <input type="text" class="form-control step-input" id="nombres-est" name="nombres-est">
+        </div>
+        <div class="form-group col-12 col-md-6 col-lg-4">
+        <label for="apellidos-est">Apellidos</label>
+        <input type="text" class="form-control step-input" id="apellidos-est" name="apellidos-est">
+        </div>
+        <div class="form-group col-12 col-md-6 col-lg-4">
+        <label for="tipo-identificacion-est">Tipo de identificación</label>
+        <select class="form-control custom-select" id="tipo-identificacion-est" name="tipo-identificacion-est">
+        <option value="">Seleccione uno</option>
+        <option value="nuip"><span class="abbreviation">Número único de indentificación personal</span> - NUIP</option>
+        <option value="ti"><span class="abbreviation">Tarjeta de identidad - </span>TI</option>
+        <option value="cc"><span class="abbreviation">Cédula de ciudadanía - </span>CC</option>
+        <option value="ce"><span class="abbreviation">Cédula de extranjería - </span>CE</option>
+        </select>
+        </div>
+        <div class="form-group col-12 col-md-6 col-lg-4">
+        <label for="numero-identificacion-est">No. Identificación</label>
+        <input type="number" class="form-control step-input" id="numero-identificacion-est" name="numero-identificacion-est">
+        </div>
+        <div class="form-group col-12 col-md-6 col-lg-4">
+        <label for="genero-est">Género</label>
+        <select class="form-control custom-select" id="genero-est" name="genero-est">
+        <option value="">Seleccione uno</option>
+        <option value="femenino">Femenino</option>
+        <option value="masculino">Masculino</option>
+        </select>
+        </div>
+        <div class="form-group col-12 col-md-6 col-lg-4">
+        <label for="departamento_est">Departamento</label>
+        <select class="form-control custom-select" id="departamento_est" name="departamento_est">
+        <option value="">Seleccione uno</option>
+        </select>
+        <small id="passwordHelpBlock" class="form-text text-muted">Para elegir <strong>CIUDAD BOGOTÁ D.C.</strong> debes elegir primero <strong>DEPARTAMENTO BOGOTÁ D.C.</strong></small>
+        </div>
+        <div class="form-group col-12 col-md-6 col-lg-4">
+        <label for="ciudad_est">Ciudad</label>
+        <select class="form-control custom-select" id="ciudad_est" name="ciudad_est">
+        <option value="">Seleccione uno</option>
+        </select>
+        </div>
+        <div class="form-group col-12 col-md-6 col-lg-4">
+        <label for="direccion-est">Dirección residencia</label>
+        <input type="text" class="form-control step-input" id="direccion-est" name="direccion-est">
+        </div>
+        <div class="form-group col-12 col-md-6 col-lg-4">
+        <label for="barrio-est">Barrio</label>
+        <input type="text" class="form-control step-input" id="barrio-est" name="barrio-est">
+        </div>
+        <div class="form-group col-12 col-md-6 col-lg-4">
+        <label for="telefono-est">Teléfono (opcional)</label>
+        <input type="number" class="form-control step-input" id="telefono-est" name="telefono-est">
+        </div>
+        <div class="form-group col-12 col-md-6 col-lg-4">
+        <label for="celular-est">Celular</label>
+        <input type="number" class="form-control step-input" id="celular-est" name="celular-est">
+        </div>
+        <div class="form-group col-12 col-md-6 col-lg-4">
+        <label for="email-est">Email</label>
+        <input type="email" class="form-control step-input" id="email-est" name="email-est">
+        </div>
+        <div class="form-group col-12 col-md-6 col-lg-4">
+        <label for="univercidad-est">Nombre de la Universidad</label>
+        <input type="text" class="form-control step-input" id="univercidad-est" name="univercidad-est">
+        </div>
+        <div class="form-group col-12 col-md-6 col-lg-4">
+        <label for="programa-est">Tipo de programa</label>
+        <select class="form-control custom-select" id="programa-est" name="programa-est">
+        <option value="">Seleccione uno</option>
+        <option value="pregrado" .getValSelect(tipo-programa, 1).>Pregrado</option>
+        <option value="posgrado" .getValSelect(tipo-programa, 2).>Posgrado</option>
+        </select>
+        </div>
+        <div class="form-group col-12 col-md-6 col-lg-4">
+        <label for="carrera-est">Carrera</label>
+        <input type="text" class="form-control step-input" id="carrera-est" name="carrera-est">
+        </div>
+        <div class="form-group col-12 col-md-6 col-lg-4">
+        <label for="semestre-est">Semestre a cursar</label>
+        <input type="number" class="form-control step-input" id="semestre-est" name="semestre-est">
+        </div>
+        <div class="form-group col-12 col-md-6 col-lg-4">
+        <label for="relacion-deudor-est">Relación con el deudor</label>
+        <input type="text" class="form-control step-input" id="relacion-deudor-est" name="relacion-deudor-est">
+        </div>
+        <div class="form-group col-12 col-md-6 col-lg-4">
+        <label for="codigo-est">Código del estudiante</label>
+        <input type="text" class="form-control step-input" id="codigo-est" name="codigo-est">
+        </div>
+        <div class="form-group col-12 col-md-6 col-lg-4">
+        <label for="ingresos-mensuales-est">Ingresos mensuales</label>
+        <input type="text" class="form-control step-input" id="ingresos-mensuales-est" name="ingresos-mensuales-est">
+        </div>
+        <div class="form-group col-12 col-md-6 col-lg-4">
+        <label for="gastos-mensuales-est">Gastos mensuales</label>
+        <input type="text" class="form-control step-input" id="gastos-mensuales-est" name="gastos-mensuales-est">
+        </div>
+        <div class="form-group form-check col-md-12 mt-5 p-4">
+        <input type="checkbox" class="form-check-input" id="tratamiento-datos" name="tratamiento-datos" value="autorizado">
+        <label class="form-check-label privacity" for="tratamiento-datos"><a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" class="text-link">AUTORIZO PARA EL <span class="decoration-text">TRATAMIENTO DE DATOS</span> <i class="fas fa-chevron-down"></i></a></label>
+        <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+        <p class="text-justify">Autorizo de manera previa, irrevocable, escrita, expresa, clara, concreta, suficiente, voluntaria e informada a REFERENCIA S.A.S, a REFERENCIAS S.A.S. y/o al PATRIMONIO AUTÓNOMO FC REFERENCIA – FENALCO BOGOTÁ y/o quien haga sus veces y/o cualquiera de los cesionarios de todos los anteriores, y/o matrices, filiales y/o subsidiarias, y/o terceros encargados para que realicen tratamiento de todos los datos personales y datos biométricos suministrados o aportados por mí por cualquier medio, sean incorporados en sus bases de datos con la finalidad de (i) realizar estudios de crédito, otorgar avales, aprobar descuento o venta de títulos valor otorgados por mí, (ii) consultar y reportar mi información en centrales de riesgo, centrales de información, operadores de información y operadores de seguridad social,  (iii) promoción central de servicios y/o productos y/o quien haga sus veces y/o cualquiera de los cesionarios de todos los anteriores, y/o matrices, filiales y/o subsidiarias, (iv) adelantar la gestión comercial, de mercadeo, administrativa, financiera(pagos, facturación, contable), operativa y de cobranza que se requiera, (v) tener datos históricos, científicos o estadísticos. Igualmente manifiesto que se me informó, de manera previa, clara y expresa lo siguiente: (i) el tratamiento al cual serán sometidos mis datos personales y la finalidad del mismo (ii) el carácter facultativo de la respuesta a las preguntas que sean hechas, cuando estas versen sobre datos sensibles (menores de edad, estado de salud) (iii) los derechos que le asisten como Titular (iv) el derecho que tengo de conocer, acceder, corregir, suprimir, revocar o reclamar por el alcance de esta autorización, o por cualquier supuesta infracción sobre mis datos. Para estos efectos expresamente autorizo a REFERENCIA S.A.S, a REFINANCIA S.A.S. y/o al PATRIMONIO AUTÓNOMO FC REFERENCIA -  FENALCO BOGOTÁ y/o quien haga sus veces y/o cualquiera de los cesionarios de todos los anteriores, y/o matrices, filiales y/o subsidiarias para que me envíe información a mi teléfono móvil, fijo, correo electrónico, redes sociales y en los demás medios que yo defino o informe. La política de tratamiento de datos del titular, sus cambios y actualizaciones, así como los cambios sustanciales que se produzcan en ésta se podrán consultar en la página web www.refinancia.co, y www.referencia.co.  </p>
+        </div>
+        </div>
+        </div>
+        <div class="form-group form-check col-md-12 mt-5 p-4">
+        <input type="checkbox" class="form-check-input" id="fondo-ingresos" name="fondo-ingresos" value="declarado">
+        <label class="form-check-label privacity" for="fondo-ingresos"><a data-toggle="collapse" href="#collapse-second" role="button" aria-expanded="false" aria-controls="collapse-second" class="text-link">DECLARO EL <span class="decoration-text">ORIGEN DE FONDOS Y DE INGRESOS</span> <i class="fas fa-chevron-down"></i></a></label>
+        <div class="collapse" id="collapse-second">
+        <div class="card card-body">
+        <p class="text-justify">Declaro que mis ingresos son de origen lícito y provienen de la(s) siguiente(s) fuente(s) declarada(s) en este formulario. Igualmente declaro que mis ingresos en ningún caso involucran actividades ilícitas propias o de terceras personas y en todos los casos son fondos propios, y por lo tanto no he prestado mi nombre para que terceras personas con recursos obtenidos ilícitamente efectúen transacciones comerciales y/o financieras a mi nombre. Manifiesto que no admitiré que terceros efectúen depósitos en mis cuentas financieras con fondos provenientes de las actividades ilícitas contempladas en el código penal colombiano o en cualquier otra norma que lo adicione ni efectuaré transacciones destinadas a tales actividades o a favor de personas relacionadas con las mismas. Reconozco que el PATRIMONIO AUTÓNOMO FC REFERENCIA – FENALCO BOGOTÁ y/o REFINANCIA S.A.S y/o REFERENCIA S.A.S ni sus cesionarios, no admitirán ni recibirán el pago de las obligaciones respaldadas por el aval otorgado o por el descuento o por la compra de venta realizada sobre los títulos valores, con fondos provenientes de actividades ilícitas o aparentemente lícitas.  </p>
+        </div>
+        </div>
+        </div>
+        <h2 class="step-title text-center w-100 mt-5">ADJUNTA LOS SIGUIENTES DOCUMENTOS (ESCANEADOS):</h2>
+        <div class="alert alert-warning w-100" role="alert">
+        <p>Antes de subir los archivos debes tener presente:</p>
+        <ul class="list-unstyled">
+        <li>1. Los archivos deben tener un formato PDF, JPG o PNG</li>
+        <li>2. El tamaño máximo de cada archivo es de 2MB</li>
+        <li>3. Solo se permite un archivo por cada campo</li>
+        </ul>  	
+        </div>
+        <div class="container-upload">
+        <div class="form-group col-12 col-md-6 col-lg-4 upload-files">
+        <i class="far fa-id-card" id="icon-cedula-deudor"></i>
+        <label for="cedula-deudor w-100">CÉDULA DEUDOR</label>
+        <input type="file" accept="image/png, .jpeg, .jpg, image/gif,application/pdf" class="form-control-file icon-file" id="cedula-deudor" name="cedula-deudor" data-icon="icon-cedula-deudor">
+        </div>
+        <div class="form-group col-12 col-md-6 col-lg-4 upload-files space">
+        <i class="far fa-id-card" id="icon-documento-est"></i>
+        <label for="documento-est w-100">DOCUMENTO ESTUDIANTE</label>
+        <input type="file" accept="image/png, .jpeg, .jpg, image/gif,application/pdf" class="form-control-file icon-file" id="documento-est" data-icon="icon-documento-est">
+        </div>
+        <div class="form-group col-12 col-md-6 col-lg-4 upload-files">
+        <i class="far fa-file-alt" id="icon-orden-matricula-est"></i>
+        <label for="orden-matricula-est w-100">ORDEN DE MATRÍCULA</label>
+        <input type="file" accept="image/png, .jpeg, .jpg, image/gif,application/pdf" class="form-control-file icon-file" id="orden-matricula-est" data-icon="icon-orden-matricula-est">
+        </div>
+        </div>        
+        </div>      
+        <div class="step-footer">
+        <input type="hidden" name="action" value="contactform">
+        <input type="submit"  class="disabled-button step-button button-master principal-button button-submit" value="Enviar">
+        <button type="button" class="step-button step-button-back button-master secondary-button" data-to_step="3" data-step="4"><i class="fas fa-chevron-left"></i> Anterior</button>
+        </div>      
+        </div>  
+        </div>  
+        </div>  
+	 </form>
+    
+    <script src="dist/bundle.js"></script>
+</body>
+</html>
