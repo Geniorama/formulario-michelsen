@@ -103,3 +103,13 @@ export const calcularFechas = (inputSolicitud, inputPrimeraCuota, mesDiff, meses
             }
         })
 }
+
+
+export const onOffButton = (boton, estate) => {
+    let botonSel = document.querySelector(boton)
+    if (estate == 'on') {
+        botonSel.classList.remove('disabled-button')
+    } else {
+        botonSel.classList.add('disabled-button')
+    }
+}

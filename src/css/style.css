@@ -1,9 +1,6 @@
 
 /*Barra de progreso*/
-.container{
-    overflow: hidden;
-  }
-  
+
   .progressbar{
     display: flex;
     list-style: none;
@@ -65,6 +62,7 @@
     opacity: 1;
     transform: translateY(0);
   }
+
   
   
   

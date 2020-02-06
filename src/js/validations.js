@@ -20,4 +20,21 @@ export const mostrarError = (modal, texto) => {
 }
 
 
+export const validar = (arrayInputs) => {
+    let inputs = arrayInputs
+
+    for (const input of inputs) {
+        if (input.length == 0) {
+           return false;
+        }
+
+    }
+
+    return true
+
+}
+
+
+
+
 

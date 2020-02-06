@@ -1,8 +1,8 @@
 import 'bootstrap';
 import '../css/style.css';
 import './../sass/style.scss';
-import {crearOpciones, input_cuotas_func, separarMiles, calcularFechas} from './utils.js';
-import {mostrarError} from './validations.js';
+import {crearOpciones, input_cuotas_func, separarMiles, calcularFechas, onOffButton} from './utils.js';
+import {mostrarError, validar} from './validations.js';
 import {stepButton} from './steps.js';
 import dptos_ciudades from './api-dptos.js';
 
@@ -36,7 +36,9 @@ const formulario1 = document.querySelector('#form-natural');
 
                 //SECCIÓN 1
                 separarMiles('.valor')
-                
+
+                let estate = false;
+
                 step1.addEventListener('change',function(){
 
                     let valorFinanciar = document.getElementById("valor-financiar").value;
@@ -44,16 +46,29 @@ const formulario1 = document.querySelector('#form-natural');
                     let plazoCuotas = document.getElementById("plazo-cuotas").value;
                     let modoPago = document.getElementById("modo-pago").value;
                     let primerPago = document.getElementById("fecha-primera-cuota").value;
-                     
-                    botonSig.addEventListener('click', function() {
-                        if (valorFinanciar === '' || tipoPrograma === '' || plazoCuotas === '' || modoPago === '' || primerPago === '') {
-                            console.log('algun campo está vacío')
-                        } else {
-                            stepButton('#form-natural')
-                        }
                         
-                    }) 
-                   
+                    let datos = [valorFinanciar, tipoPrograma, plazoCuotas, modoPago, primerPago];
+
+                    estate = validar(datos)
+
+                    if (estate) {
+                        step1.classList.replace('form-disabled', 'form-enabled')
+                        botonSig.classList.remove('disabled-button')   
+                    } else {
+                        step1.classList.replace('form-enabled', 'form-disabled')
+                        botonSig.classList.add('disabled-button')
+                    }
+
+                    return estate;
+
+                })
+
+                botonSig.addEventListener('click', function() {
+                        if(estate){
+                             stepButton('#form-natural') 
+                        } else {
+                             mostrarError('.modal-errors', 'Falta diligenciar alguno de los campos')
+                        }
                 })
 
                 
@@ -67,12 +82,13 @@ const formulario1 = document.querySelector('#form-natural');
 
                 
                 for (const itemChecked of ocupacion_options) {
-                        valor_id = itemChecked.value
+                        let valor_id = itemChecked.value
                         valor_id = valor_id.toLowerCase() // Cambiar letras a minusculas
                         itemChecked.setAttribute('id', valor_id)
                            
                 }
 
+                let estate2 = false;
                 step2.addEventListener('change',function(){
 
                         let nombres = document.getElementById("nombres-rep").value;
@@ -92,38 +108,71 @@ const formulario1 = document.querySelector('#form-natural');
                         let independiente = document.getElementById("independiente").checked;
                         let pensionado = document.getElementById("pensionado").checked;
                         let rentista = document.getElementById("rentista").checked;
+                
+                        let datos2 = [nombres, apellidos, tipoIdentificacion, numeroIdentificacion, genero, direccion, barrio, departamento, ciudad, celular, email, ingresosMensuales, gastosMensuales]
+                
+                        estate2 = validar(datos2)
 
-                
-                if(nombres === '' || apellidos === '' || tipoIdentificacion === '' || numeroIdentificacion === '' || genero === ''
-                || direccion === '' || barrio === '' || departamento === '' || ciudad === '' || celular === '' || email === ''
-                || ingresosMensuales === '' || gastosMensuales === '' || (empleado == '' && independiente == '' && pensionado == '' && rentista == '')){
-                        deshabilitarBoton(botonSig2);
-                } else {
-                        habilitarBoton(botonSig2);
-                }
-                
+                        if (estate2 == false || (empleado == '' && independiente == '' && pensionado == '' && rentista == '')) {
+                        step2.classList.replace('form-enabled', 'form-disabled')
+                        botonSig2.classList.add('disabled-button')
+
+                        estate2 = false;
+                        
+                        } else {
+
+                        step2.classList.replace('form-disabled', 'form-enabled')
+                        botonSig2.classList.remove('disabled-button')          
+                        }
+
+                        return estate2;
+  
+                })
+
+                botonSig2.addEventListener('click', function() {
+                        if(estate2){
+                             stepButton('#form-natural') 
+                        } else {
+                             mostrarError('.modal-errors', 'Falta diligenciar alguno de los campos')
+                        }
                 })
         
 
                 //SECCIÓN 3
 
+                let estate3 = false; 
+
                 step3.addEventListener('change',function(){
                         let nombresFamiliar = document.getElementById("nombres-familiar").value;
                         let apellidosFamiliar = document.getElementById("apellidos-familiar").value;
                         let celularFamiliar = document.getElementById("celular-familiar").value;
-                        let telefoFamiliar = document.getElementById("telefono-familiar").value;
                         let nombresPersonal = document.getElementById("nombres-personal").value;
                         let apellidosPersonal = document.getElementById("apellidos-personal").value;
                         let celularPersonal = document.getElementById("celular-personal").value;
-                        let telefoPersonal = document.getElementById("telefono-personal").value;
                 
-                if(nombresFamiliar === '' || apellidosFamiliar === '' || celularFamiliar === ''
-                || nombresPersonal === '' || apellidosPersonal === '' || celularPersonal === '' ){
-                        deshabilitarBoton(botonSig3);
-                        
-                } else {
-                        habilitarBoton(botonSig3);
-                }
+                
+                let datos3 = [nombresFamiliar, apellidosFamiliar, celularFamiliar, nombresPersonal, apellidosPersonal, celularPersonal]
+
+                estate3 = validar(datos3)
+
+                        if(estate3){
+                           step3.classList.replace('form-disabled', 'form-enabled')
+                           botonSig3.classList.remove('disabled-button') 
+                                
+                        } else {
+                           step3.classList.replace('form-enabled', 'form-disabled')
+                           botonSig3.classList.add('disabled-button')
+                        }
+
+                        return estate3;
+                })
+
+                botonSig3.addEventListener('click', function() {
+                        if(estate3){
+                             stepButton('#form-natural') 
+                        } else {
+                             mostrarError('.modal-errors', 'Falta diligenciar alguno de los campos')
+                        }
                 })
         
                 
@@ -167,5 +216,5 @@ const formulario1 = document.querySelector('#form-natural');
                 }
                 })
                 
-                iconValidate(icons);
+                //iconValidate(icons);
     } 

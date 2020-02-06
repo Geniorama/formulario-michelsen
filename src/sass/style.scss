@@ -1,1 +1,14 @@
 @import '~bootstrap';
+
+button{
+    background-color: black;
+    color: white;
+    border: none;
+    font-size: 1.2em;
+    line-height: 2em;
+    padding: 0 1em;
+
+    &.disabled-button{
+        background-color: gray;
+    }
+}
