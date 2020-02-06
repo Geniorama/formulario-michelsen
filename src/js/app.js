@@ -1,5 +1,6 @@
 import 'bootstrap';
 import '../css/style.css';
+import './../sass/style.scss';
 import {crearOpciones, input_cuotas_func, separarMiles, calcularFechas} from './utils.js';
 import {mostrarError} from './validations.js';
 import {stepButton} from './steps.js';
