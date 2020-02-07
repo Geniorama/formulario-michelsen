@@ -2,7 +2,7 @@ import 'bootstrap';
 import '../css/style.css';
 import './../sass/style.scss';
 import {crearOpciones, input_cuotas_func, separarMiles, calcularFechas, onOffButton} from './utils.js';
-import {mostrarError, validar} from './validations.js';
+import {mostrarError, validar, iconValidate} from './validations.js';
 import {stepButton} from './steps.js';
 import dptos_ciudades from './api-dptos.js';
 
@@ -25,6 +25,8 @@ const formulario1 = document.querySelector('#form-natural');
         const botonSig4 = step4.querySelector('.button-submit');
 
         dptos_ciudades('#departamento', '#ciudad');
+
+        dptos_ciudades('#departamento_est', '#ciudad_est');
 
         const icons = document.querySelectorAll("#form-natural .icon-file");
 
@@ -178,6 +180,8 @@ const formulario1 = document.querySelector('#form-natural');
                 
         //SECCIÓN 4
         
+        let estate4 = false;
+
         step4.addEventListener('change',function(){
 
                         let nombres = document.getElementById("nombres-est").value;
@@ -205,16 +209,29 @@ const formulario1 = document.querySelector('#form-natural');
                         let documentoEstudiante = document.getElementById("documento-est").files.length;
                         let ordenMatricula = document.getElementById("orden-matricula-est").files.length;
                 
-                if(nombres === '' || apellidos === '' || tipoIdentificacion === '' || numeroIdentificacion === ''
-                || genero === '' || direccion === '' || barrio === '' || celular === '' || email === '' 
-                || universidad === '' || carrera === '' || semestre === '' || relacionDeudor === ''
-                || codigo === '' || ingresosMensuales === '' || gastosMensuales === '' || tratamientoDatos == '' || fondoIngresos == ''
-                || cedulaDeudor == 0 || documentoEstudiante == 0 || ordenMatricula == 0 || departamento === '' || ciudad === ''){
-                        deshabilitarBoton(botonSig4);
-                } else {
-                        habilitarBoton(botonSig4);
-                }
+                let datos4 = [nombres, apellidos, tipoIdentificacion, numeroIdentificacion, genero, direccion, barrio, celular, email, universidad, carrera, semestre, relacionDeudor, codigo, ingresosMensuales, gastosMensuales, tratamientoDatos, fondoIngresos, cedulaDeudor, documentoEstudiante, ordenMatricula, departamento, ciudad]
+                
+                estate4 = validar(datos4)
+
+                        if(estate4){
+                                step4.classList.replace('form-disabled', 'form-enabled')
+                                botonSig4.classList.remove('disabled-button') 
+                                
+                        } else {
+                                step4.classList.replace('form-enabled', 'form-disabled')
+                                botonSig4.classList.add('disabled-button')
+                        }
+
+                        return estate4;
+                })
+
+                botonSig4.addEventListener('click', function() {
+                        if(estate4){
+                             stepButton('#form-natural') 
+                        } else {
+                             mostrarError('.modal-errors', 'Falta diligenciar alguno de los campos')
+                        }
                 })
                 
-                //iconValidate(icons);
+                iconValidate(icons);
     } 

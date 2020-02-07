@@ -35,6 +35,31 @@ export const validar = (arrayInputs) => {
 }
 
 
+// VALIDACION INPUT FILE
+export const iconValidate = array => {
+
+    for (let inputArray of array) {
+
+            inputArray.addEventListener('change', function(){
+                    let inputValue = this.value
+                    let inputData = this.getAttribute('data-icon')
+                    let inputSize = this.files[0];
+
+                    if(inputValue == ""){                               
+                    } else if(inputSize.size > 2000000){
+                            alert("El tamaño máximo de cada archivo debe ser de 2MB");
+                            return;
+                    } else {
+                            document.getElementById(inputData).classList.add('correct-file')
+                    }
+
+            })
+            
+    }
+
+    
+} 
+
 
 
 
