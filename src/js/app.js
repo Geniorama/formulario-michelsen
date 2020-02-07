@@ -2,7 +2,7 @@ import 'bootstrap';
 import '../css/style.css';
 import './../sass/style.scss';
 import {crearOpciones, input_cuotas_func, separarMiles, calcularFechas, onOffButton} from './utils.js';
-import {mostrarError, validar, iconValidate} from './validations.js';
+import {mostrarError, validar, iconValidate, validarDatos, validateStep} from './validations.js';
 import {stepButton} from './steps.js';
 import dptos_ciudades from './api-dptos.js';
 
@@ -38,45 +38,8 @@ const formulario1 = document.querySelector('#form-natural');
 
                 //SECCIÓN 1
                 separarMiles('.valor')
-
-                let estate = false;
-
-                step1.addEventListener('change',function(){
-
-                    let valorFinanciar = document.getElementById("valor-financiar").value;
-                    let tipoPrograma = document.getElementById("tipo-programa").value;
-                    let plazoCuotas = document.getElementById("plazo-cuotas").value;
-                    let modoPago = document.getElementById("modo-pago").value;
-                    let primerPago = document.getElementById("fecha-primera-cuota").value;
-                        
-                    let datos = [valorFinanciar, tipoPrograma, plazoCuotas, modoPago, primerPago];
-
-                    estate = validar(datos)
-
-                    if (estate) {
-                        step1.classList.replace('form-disabled', 'form-enabled')
-                        botonSig.classList.remove('disabled-button')   
-                    } else {
-                        step1.classList.replace('form-enabled', 'form-disabled')
-                        botonSig.classList.add('disabled-button')
-                    }
-
-                    return estate;
-
-                })
-
-                botonSig.addEventListener('click', function() {
-                        if(estate){
-                             stepButton('#form-natural') 
-                        } else {
-                             mostrarError('.modal-errors', 'Falta diligenciar alguno de los campos')
-                        }
-                })
-
                 
-
-                
-        
+                validateStep(step1)
                 //SECCIÓN 2
         
 
@@ -90,55 +53,7 @@ const formulario1 = document.querySelector('#form-natural');
                            
                 }
 
-                let estate2 = false;
-                step2.addEventListener('change',function(){
-
-                        let nombres = document.getElementById("nombres-rep").value;
-                        let apellidos = document.getElementById("apellidos-rep").value;
-                        let tipoIdentificacion = document.getElementById("tipo-indetificacion-rep").value;
-                        let numeroIdentificacion = document.getElementById("numero-identificacion-rep").value;
-                        let genero = document.getElementById("genero-rep").value;
-                        let direccion = document.getElementById("direccion-rep").value;
-                        let barrio = document.getElementById("barrio-rep").value;
-                        let departamento = document.getElementById("departamento").value;
-                        let ciudad = document.getElementById("ciudad").value;
-                        let celular = document.getElementById("celular-rep").value;
-                        let email = document.getElementById("email-rep").value;
-                        let ingresosMensuales = document.getElementById("ingresos-mensuales-rep").value;
-                        let gastosMensuales = document.getElementById("gastos-mensuales-rep").value;
-                        let empleado = document.getElementById("empleado").checked;
-                        let independiente = document.getElementById("independiente").checked;
-                        let pensionado = document.getElementById("pensionado").checked;
-                        let rentista = document.getElementById("rentista").checked;
-                
-                        let datos2 = [nombres, apellidos, tipoIdentificacion, numeroIdentificacion, genero, direccion, barrio, departamento, ciudad, celular, email, ingresosMensuales, gastosMensuales]
-                
-                        estate2 = validar(datos2)
-
-                        if (estate2 == false || (empleado == '' && independiente == '' && pensionado == '' && rentista == '')) {
-                        step2.classList.replace('form-enabled', 'form-disabled')
-                        botonSig2.classList.add('disabled-button')
-
-                        estate2 = false;
-                        
-                        } else {
-
-                        step2.classList.replace('form-disabled', 'form-enabled')
-                        botonSig2.classList.remove('disabled-button')          
-                        }
-
-                        return estate2;
-  
-                })
-
-                botonSig2.addEventListener('click', function() {
-                        if(estate2){
-                             stepButton('#form-natural') 
-                        } else {
-                             mostrarError('.modal-errors', 'Falta diligenciar alguno de los campos')
-                        }
-                })
-        
+                validateStep(step2)
 
                 //SECCIÓN 3
 
