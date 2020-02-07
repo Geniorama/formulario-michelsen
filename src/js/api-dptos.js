@@ -1,11 +1,11 @@
 //API DEPARTAMENTOS Y CIUDADES
+const dptos_ciudades = (formulario, classDepto) => {
+    let form = document.querySelector(formulario)
+    let boxDptos = form.querySelectorAll(classDepto)
 
-const dptos_ciudades = (contDpto, contMun) => {
+    for (const boxDpto of boxDptos) {
 
-    const boxDpto = document.querySelector(contDpto);
-    const boxMun = document.querySelector(contMun); 
-
-    fetch('https://univercity.com.co/api_colombia/departamentos.php')
+        fetch('https://univercity.com.co/api_colombia/departamentos.php')
             .then(res => res.json())
             .then(data => {
                 for (let dpto of data) {
@@ -18,6 +18,8 @@ const dptos_ciudades = (contDpto, contMun) => {
             
             boxDpto.addEventListener('change', function() {
                 let valor_dpto = this.options[this.selectedIndex].getAttribute('data-number')
+                let target_dpto = this.dataset.target
+                let boxMun = document.getElementById(target_dpto)
                 
                 boxMun.innerHTML = '<option value="" selected>Selecciona un municipio</option>'
                 fetch(`https://univercity.com.co/api_colombia/municipios.php?id_departamento=${valor_dpto}`)
@@ -30,7 +32,9 @@ const dptos_ciudades = (contDpto, contMun) => {
                         `
                     }
                 })
-            })   
+            }) 
+        
+    }  
 }
 
 export default dptos_ciudades;

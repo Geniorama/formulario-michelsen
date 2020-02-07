@@ -31,12 +31,12 @@
             <div class="form-row">
             <div class="form-group col-md-6">
             <label for="valor-financiar">Valor a financiar</label>
-            <input type="text" name="valor-financiar" class="form-control step-input valor"  id="valor-financiar">
+            <input type="text" name="valor-financiar" class="form-control step-input valor obligatorio"  id="valor-financiar" required = "true">
             <small id="passwordHelpBlock" class="form-text text-muted">El monto mínimo que puedes solicitar es de $500.000</strong></small>
             </div>
             <div class="form-group col-md-6"> 
             <label for="tipo-programa">Tipo de programa</label>
-            <select class="form-control custom-select" id="tipo-programa" name="tipo-programa">
+            <select class="form-control custom-select" id="tipo-programa" name="tipo-programa" required = "true">
             <option value="">Seleccione uno</option>
             <option value="Pregrado">Pregrado</option>
             <option value="Posgrado">Posgrado</option>
@@ -44,7 +44,7 @@
             </div>
             <div class="form-group col-md-6">
             <label for="plazo-cuotas">Plazo (No. de Cuotas)</label>
-            <select class="form-control custom-select" id="plazo-cuotas" name="plazo-cuotas">
+            <select class="form-control custom-select" id="plazo-cuotas" name="plazo-cuotas" required>
             <option value="">Seleccione uno</option>
             <option value="1" disabled>1</option>
             <option value="2" disabled>2</option>
@@ -71,7 +71,7 @@
             </div>
             <div class="form-group col-md-6">
             <label for="fecha-desembolso">Fecha Solicitud</label>
-            <input type="date"  class="form-control step-input" id="fecha-desembolso" name="fecha-desembolso" value=".getValues(fecha-solicitud).">
+            <input type="date"  class="form-control step-input obligatorio" id="fecha-desembolso" name="fecha-desembolso" value=".getValues(fecha-solicitud).">
             </div>
             <div class="form-group col-md-6">
             <label for="fecha-primera-cuota">Fecha 1ra. Cuota</label>
@@ -134,7 +134,7 @@
             </div>
             <div class="form-group col-12 col-md-6 col-lg-4">
             <label for="departamento">Departamento</label>
-            <select class="form-control custom-select departamento" id="departamento" name="departamento">
+            <select class="form-control custom-select departamento" data-target="ciudad" id="departamento" name="departamento">
             <option value="">Seleccione uno</option>
             </select>
             <small id="passwordHelpBlock" class="form-text text-muted">Para elegir <strong>CIUDAD BOGOTÁ D.C.</strong> debes elegir primero <strong>DEPARTAMENTO BOGOTÁ D.C.</strong></small>
@@ -182,11 +182,11 @@
             </div>
             <div class="form-group col-md-4">
             <label for="ingresos-mensuales-rep">Ingresos mensuales</label>
-            <input type="number" class="form-control step-input" id="ingresos-mensuales-rep" name="ingresos-mensuales-rep">
+            <input type="text" class="form-control step-input valor" id="ingresos-mensuales-rep" name="ingresos-mensuales-rep">
             </div>
             <div class="form-group col-md-4">
             <label for="gastos-mensuales-rep">Gastos mensuales</label>
-            <input type="number" class="form-control step-input" id="gastos-mensuales-rep" name="gastos-mensuales-rep">
+            <input type="number" class="form-control step-input valor" id="gastos-mensuales-rep" name="gastos-mensuales-rep">
             </div>
             </div>
             <div class="step-footer">
@@ -291,7 +291,7 @@
             </div>
             <div class="form-group col-12 col-md-6 col-lg-4">
             <label for="departamento_est">Departamento</label>
-            <select class="form-control custom-select departamento" id="departamento_est" name="departamento_est">
+            <select class="form-control custom-select departamento" data-target="ciudad_est" id="departamento_est" name="departamento_est">
             <option value="">Seleccione uno</option>
             </select>
             <small id="passwordHelpBlock" class="form-text text-muted">Para elegir <strong>CIUDAD BOGOTÁ D.C.</strong> debes elegir primero <strong>DEPARTAMENTO BOGOTÁ D.C.</strong></small>
@@ -405,7 +405,7 @@
             </div>      
             <div class="step-footer">
             <input type="hidden" name="action" value="contactform">
-            <input type="submit"  class="disabled-button step-button button-master principal-button button-submit" value="Enviar">
+            <input type="submit"  class="disabled-button step-button step-button-next button-master principal-button button-submit" value="Enviar">
             <button type="button" class="step-button step-button-back button-master secondary-button" data-to_step="3" data-step="4"><i class="fas fa-chevron-left"></i> Anterior</button>
             </div>      
             </div>  

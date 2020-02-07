@@ -1,15 +1,5 @@
 import moment from 'moment';
 
-export const sumaMultiple = arreglo => {
-    let suma = 0;
-
-    for (let numero of arreglo) {
-        numero = parseInt(numero);
-        suma = suma + numero;
-    }
-    return suma;
-}
-
 export const crearOpciones = (numOpciones, contenedor_cuotas) => {
     let element = '<option selected>Selecciona una opción</option>';
       
@@ -41,32 +31,40 @@ export const input_cuotas_func = (inputPrograma, inputCuotas) =>{
 }
 
 
-export const separarMiles = input => {
-    let input_monto = document.querySelector(input);
+export const separarMiles = (formulario, claseValor) => {
+    let form = document.querySelector(formulario)
 
-    input_monto.addEventListener('keyup', (e) => {
-        let entrada = e.target.value.split('.').join('');
-        entrada = entrada.split('').reverse();
+    let inputsValor = form.querySelectorAll(claseValor)
 
-        let salida = [];
-        let aux = '';
+    for (const input_monto of inputsValor) {
         
-        let paginador = Math.ceil(entrada.length / 3);
+        input_monto.addEventListener('keyup', (e) => {
+            let entrada = e.target.value.split('.').join('');
+            entrada = entrada.split('').reverse();
 
-        for (let i = 0; i < paginador; i++) {
-            for (let j = 0; j < 3; j++) {
-               if(entrada[j + (i*3)] != undefined){
-                    aux += entrada[j + (i*3)];
-               }    
-            }
-            salida.push(aux);
-            aux = '';
-
-            e.target.value = salida.join('.').split("").reverse().join("");
+            let salida = [];
+            let aux = '';
             
-        }
+            let paginador = Math.ceil(entrada.length / 3);
+
+            for (let i = 0; i < paginador; i++) {
+                for (let j = 0; j < 3; j++) {
+                if(entrada[j + (i*3)] != undefined){
+                        aux += entrada[j + (i*3)];
+                }    
+                }
+                salida.push(aux);
+                aux = '';
+
+                e.target.value = salida.join('.').split("").reverse().join("");
+                
+            }
+            
+        })
         
-    })
+    }
+
+    
 }
 
 
@@ -102,14 +100,4 @@ export const calcularFechas = (inputSolicitud, inputPrimeraCuota, mesDiff, meses
                 input_cuota_uno.setAttribute('max', fecha_max_limit);
             }
         })
-}
-
-
-export const onOffButton = (boton, estate) => {
-    let botonSel = document.querySelector(boton)
-    if (estate == 'on') {
-        botonSel.classList.remove('disabled-button')
-    } else {
-        botonSel.classList.add('disabled-button')
-    }
 }

@@ -1,5 +1,3 @@
-import {stepButton} from './steps.js';
-
 export const mostrarError = (modal, texto) => {
     let modalWindow = document.querySelector(modal);
     modalWindow.innerHTML = `
@@ -21,33 +19,40 @@ export const mostrarError = (modal, texto) => {
     })
 }
 
-
-export const validar = (arrayInputs) => {
-    let inputs = arrayInputs
-
-    for (const input of inputs) {
-        if (input.length == 0) {
-           return false;
-        }
-
-    }
-
-    return true
-
-}
-
 export const validarDatos = step =>{
     
-  let inputs = step.querySelectorAll("input[type='text'], select, input[type='date']")
-
+    let inputs = step.querySelectorAll("input.obligatorio[type='text'], input.obligatorio[type='number'], input.obligatorio[type='date'], input.obligatorio[type='email'], select.obligatorio")
+    
     for (const input of inputs) {
+        
         let inputVal = input.value 
+        
         if (inputVal.length == 0) {
-        return false;
-        }
+            return false;
+        } 
     }
 
     return true
+}
+
+export const validarCheck = step => {
+    
+    let inputs = step.querySelectorAll("input.obligatorio[type='checkbox']")
+    
+    if (inputs.length == 0) {
+        return true
+    } else {
+        for (const input of inputs) {
+            let inputVal = input.checked 
+            
+            if (inputVal) {
+                return true;
+            } 
+        }
+    
+        return false
+    }
+    
 }
 
 // VALIDACION INPUT FILE
@@ -74,36 +79,6 @@ export const iconValidate = array => {
 
     
 } 
-
-
-export const validateStep = step => {
-    let botonSig = step.querySelector('.step-button-next');
-    let estate = false;
-
-    step.addEventListener('change',function(){
-
-        estate = validarDatos(step)
-
-        if (estate) {
-            step.classList.replace('form-disabled', 'form-enabled')
-            botonSig.classList.remove('disabled-button')   
-        } else {
-            step.classList.replace('form-enabled', 'form-disabled')
-            botonSig.classList.add('disabled-button')
-        }
-
-        return estate;
-
-    })
-
-    botonSig.addEventListener('click', function() {
-            if(estate){
-                 stepButton('#form-natural') 
-            } else {
-                 mostrarError('.modal-errors', 'Falta diligenciar alguno de los campos')
-            }
-    })
-}
 
 
 
