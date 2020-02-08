@@ -1,5 +1,5 @@
 export const mostrarError = (modal, texto) => {
-    let modalWindow = document.querySelector(modal);
+    let modalWindow = document.getElementById(modal);
     modalWindow.innerHTML = `
         <div class="card alert alert-danger p-5">
             <div class="card-body">
@@ -11,10 +11,10 @@ export const mostrarError = (modal, texto) => {
         </div>
     `;
 
-    modalWindow.classList.add('show-modal')
+        modalWindow.classList.add('show-modal')
 
-    let buttonClose = modalWindow.querySelector('.fa-times');
-    buttonClose.addEventListener('click', function() {
+        let buttonClose = modalWindow.querySelector('.fa-times');
+        buttonClose.addEventListener('click', function() {
         modalWindow.classList.remove('show-modal');
     })
 }
