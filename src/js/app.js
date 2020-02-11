@@ -65,17 +65,17 @@ const validateForm = formulario => {
 }
 
 const form_natural = document.getElementById('form-natural')
-//const form_legal = document.getElementById('form-legal')
+const form_legal = document.getElementById('form-legal')
 
 if (form_natural) {
     validateForm('#form-natural')
 }
 
-/*
+
 if (form_legal) {
     validateForm('#form-legal')
 }
-*/
+
 
 
 
