@@ -3,7 +3,7 @@ import '../css/style.css';
 import './../sass/style.scss';
 import {input_cuotas_func, separarMiles, calcularFechas} from './utils.js';
 import {stepButton} from './steps.js';
-import {iconValidate, validarDatos, validarCheck, mostrarError} from './validations.js';
+import {iconValidate, validarDatos, validarCheck, mostrarError, validarCheckAut} from './validations.js';
 import dptos_ciudades from './api-dptos.js';
 
 
@@ -30,6 +30,7 @@ const validateForm = formulario => {
             let botonSig = step.querySelector('.button-next');
             let estate = false;
             let estateCheck = false;
+            let estateCheckAut = false;
 
             
             step.addEventListener('change',function(){
