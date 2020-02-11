@@ -52,7 +52,12 @@ const validateForm = formulario => {
             botonSig.addEventListener('click', function(e) {
                 let button = e.target
                 if(estate){
-                    button.classList.add('step-button-next')
+                    if (button.classList.contains('button-submit')) {
+                        console.log('El botón es submit')
+                    } else {
+                        button.classList.add('step-button-next')
+                    }
+                    
                 } else {
                     mostrarError('modal-errors', 'Falta diligenciar alguno de los campos')
                 }
