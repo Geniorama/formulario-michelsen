@@ -10,8 +10,7 @@ import dptos_ciudades from './api-dptos.js';
 
 const validateForm = formulario => {
     let formularioItem = document.querySelector(formulario)
-    let valorFinanciar = document.getElementById('valor-financiar')
-    console.log(valorFinanciar)
+    
     
     //Inputs valores
     separarMiles(formulario, '.valor')
@@ -32,11 +31,8 @@ const validateForm = formulario => {
             let botonSig = step.querySelector('.button-next');
             let estate = false;
             let estateCheck = false;
+            let valorFinanciar = document.getElementById('valor-financiar')
            
-            
-            
-
-            
             step.addEventListener('change',function(){
 
                 estate = validarDatos(step)
@@ -57,16 +53,26 @@ const validateForm = formulario => {
             
             botonSig.addEventListener('click', function(e) {
                 let button = e.target
-                if(estate){
-                    if (button.classList.contains('button-submit')) {
-                        console.log('El botón es submit')
-                    } else {
-                        button.classList.add('step-button-next')
-                    }
-                    
+                let num = valorFinanciar.value
+                num = num.split('.')
+                num = num.join('')
+                num = parseInt(num)
+
+                if (num < 500000) {
+                    mostrarError('modal-errors', 'Debes ingresar un valor mayor a $500.000')
                 } else {
-                    mostrarError('modal-errors', 'Falta diligenciar alguno de los campos')
+                    if(estate){
+                        if (button.classList.contains('button-submit')) {
+                            console.log('El botón es submit')
+                        } else {
+                            button.classList.add('step-button-next')
+                        }    
+                    } else {
+                        mostrarError('modal-errors', 'Falta diligenciar alguno de los campos')
+                    }
                 }
+                
+                
             })
             
             stepButton(formulario)
