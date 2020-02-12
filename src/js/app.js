@@ -36,8 +36,6 @@ const validateForm = formulario => {
             let fechaSolicitud = document.getElementById('fecha-desembolso')
             let fechaCuotaUno = document.getElementById('fecha-primera-cuota')
             let fechaActual = moment();
-
-            console.log(fechaActual)
            
             step.addEventListener('change',function(){
 
