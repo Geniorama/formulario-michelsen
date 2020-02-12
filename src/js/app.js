@@ -1,6 +1,7 @@
 import 'bootstrap';
 import '../css/style.css';
 import './../sass/style.scss';
+import moment from 'moment';
 import {input_cuotas_func, separarMiles, calcularFechas} from './utils.js';
 import {stepButton} from './steps.js';
 import {iconValidate, validarDatos, validarCheck, mostrarError} from './validations.js';
@@ -32,6 +33,11 @@ const validateForm = formulario => {
             let estate = false;
             let estateCheck = false;
             let valorFinanciar = document.getElementById('valor-financiar')
+            let fechaSolicitud = document.getElementById('fecha-desembolso')
+            let fechaCuotaUno = document.getElementById('fecha-primera-cuota')
+            let fechaActual = moment();
+
+            console.log(fechaActual)
            
             step.addEventListener('change',function(){
 
@@ -58,8 +64,27 @@ const validateForm = formulario => {
                 num = num.join('')
                 num = parseInt(num)
 
+                let fechaVal = fechaSolicitud.value
+                fechaVal = moment(fechaVal)
+
+                let fechaCuotaVal = fechaCuotaUno.value
+                fechaCuotaVal = moment(fechaCuotaVal)
+               
+                let difSolicitud = fechaVal.diff(fechaActual, 'days')
+                let difCuota = fechaCuotaVal.diff(fechaVal, 'months', true)
+
                 if (num < 500000) {
                     mostrarError('modal-errors', 'Debes ingresar un valor mayor a $500.000')
+                    return false
+                } else if (difSolicitud < 0){
+                    mostrarError('modal-errors', 'En <strong>"Fecha Solicitud"</strong> Debes ingresar una fecha superior a la actual')
+                    return false
+                } else if (difCuota < 1){
+                    mostrarError('modal-errors', 'En <strong>"Fecha 1ra cuota"</strong> Debes ingresar una fecha superior a 30 días desde la "Fecha solicitud"')
+                    return false
+                } else if(difCuota > 2) {
+                    mostrarError('modal-errors', 'En <strong>"Fecha 1ra cuota"</strong> Debes ingresar una fecha inferior a 60 días desde la "Fecha solicitud"')
+                    return false
                 } else {
                     if(estate){
                         if (button.classList.contains('button-submit')) {
