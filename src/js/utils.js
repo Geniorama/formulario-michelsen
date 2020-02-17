@@ -1,5 +1,12 @@
 import moment from 'moment';
 
+export const getParameterByName = name => {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+    results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
 export const crearOpciones = (numOpciones, contenedor_cuotas) => {
     let element = '<option selected>Selecciona una opción</option>';
       

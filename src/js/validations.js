@@ -21,7 +21,7 @@ export const mostrarError = (modal, texto) => {
 
 export const validarDatos = step =>{
     
-    let inputs = step.querySelectorAll("input.obligatorio[type='text'], input.obligatorio[type='file'], input.obligatorio[type='number'], input.obligatorio[type='date'], input.obligatorio[type='email'], select.obligatorio")
+    let inputs = step.querySelectorAll("input.obligatorio[type='text'], input.obligatorio[type='file'], input.obligatorio[type='tel'], input.obligatorio[type='number'], input.obligatorio[type='date'], input.obligatorio[type='email'], select.obligatorio")
     
     for (const input of inputs) {
         
